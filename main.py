@@ -2,8 +2,6 @@ import collections
 import datetime
 import pandas
 import pprint
-import json
-import requests
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
