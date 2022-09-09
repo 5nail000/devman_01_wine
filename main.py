@@ -3,6 +3,7 @@ import datetime
 import pandas
 import pprint
 import argparse
+import logging
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -10,7 +11,10 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 def main():
 
+    YEAR_OF_OPENING = 1920
+
     pp = pprint.PrettyPrinter(indent=4)
+    logging.basicConfig(filename='logging.log', level=logging.DEBUG)
 
     parser = argparse.ArgumentParser(
         description='Описание что делает программа'
@@ -48,19 +52,22 @@ def main():
 
     rendered_page = template.render(
         bottles = bottles_collection,
-        years_str = write_ru_years(datetime.date.today().year - 1920)
+        years_str = write_ru_years(datetime.date.today().year - YEAR_OF_OPENING)
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
 
-    # Prints info For testing
-    '''
-    print ('Количество Вин: ' + str(len(bottles_excel)))
-    print ('Количество категорий: ' + str(len(bottles_collection)))
+
+    #----------- Prints info to log
+
+    logging.info (f'Успешный запуск сайта ({str(datetime.datetime.now()).split(".")[0]})')
+    logging.info ('Количество Вин: ' + str(len(bottles_excel)))
+    logging.info ('Количество категорий: ' + str(len(bottles_collection)))
     category_str = ""
     for bottle in bottles_collection:
-        print ("  - "+bottle)
+        logging.info ("  - "+bottle)
+    logging.info ('-' * 40)
     #'''
         
     server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
