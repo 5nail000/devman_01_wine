@@ -44,11 +44,14 @@ def main():
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
 
+    # Prints info For testing
+    '''
     print ('Количество Вин: ' + str(len(bottles_excel)))
     print ('Количество категорий: ' + str(len(bottles_collection)))
     category_str = ""
     for bottle in bottles_collection:
         print ("  - "+bottle)
+    #'''
         
     server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
     server.serve_forever()
