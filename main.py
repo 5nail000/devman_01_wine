@@ -1,7 +1,6 @@
 import collections
 import datetime
 import pandas
-import pprint
 import argparse
 import logging
 
@@ -13,7 +12,6 @@ def main():
 
     YEAR_OF_OPENING = 1920
 
-    pp = pprint.PrettyPrinter(indent=4)
     logging.basicConfig(filename='logging.log', level=logging.DEBUG)
 
     parser = argparse.ArgumentParser(
@@ -32,15 +30,14 @@ def main():
 
     def write_ru_years(num):
         
-        string = 'лет'
+        year_string = 'лет'
 
         if str(num)[-2:-1] != '1':
-            if str(num)[-1] == '1': string = 'год'
-            if str(num)[-1] == '2': string = 'года'
-            if str(num)[-1] == '3': string = 'года'
-            if str(num)[-1] == '4': string = 'года'
-
-        return str(num) + ' ' + string
+            if str(num)[-1] == '1': 
+                year_string = 'год'
+            if str(num)[-1] == '2' or str(num)[-1] == '3' or str(num)[-1] == '4':
+                year_string = 'года'
+        return f'{num} {year_string}'
 
     if args.dir: wine_folder = args.dir
     else : wine_folder = '.'

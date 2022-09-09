@@ -114,26 +114,28 @@
           </div>
         </div>
         
-        {% for bottle in bottles %}
+        {% for type in bottles %}
 
           <div class="row">
               <div class="col-12 section-title text-center mb-5">
-                  <h2 class="d-block">{{bottle}}</h2>
+                  <h2 class="d-block">{{type}}</h2>
               </div>
           </div>
 
             <div class="row">
-            {% for bottle_2 in bottles[bottle] %}
+            {% for bottle in bottles[type] %}
 
               <div class="col-4">
                   <div class="card">
-                      <img src="images/{{bottle_2.Картинка}}" class="card-img-top" alt="...">
-                      {% if bottle_2.Акция %}
-                      <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                      <img src="images/{{bottle.Картинка}}" class="card-img-top" alt="...">
+
+                      {% if bottle.Акция %}
+                        <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                       {% endif %}
+
                       <div class="card-body">
-                          <h5 class="card-title">{{bottle_2.Название}}</h5>
-                          <p class="card-text">{{bottle_2.Цена}} руб.</p>
+                          <h5 class="card-title">{{bottle.Название}}</h5>
+                          <p class="card-text">{{bottle.Цена}} руб.</p>
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                     </div>
