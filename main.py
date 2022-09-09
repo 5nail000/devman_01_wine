@@ -44,15 +44,13 @@ def main():
         bottles_collection[bottle.get('Категория')].append(bottle)
 
     rendered_page = template.render(
-        bottles = bottles_collection,
+        bottles_data = bottles_collection,
         years_str = write_ru_years(datetime.date.today().year - year_of_opening)
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
 
-
-    #----------- Prints info to log
 
     logging.info (f'Успешный запуск сайта ({str(datetime.datetime.now()).split(".")[0]})')
     logging.info ('Количество Вин: ' + str(len(bottles_excel)))
