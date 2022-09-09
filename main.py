@@ -30,7 +30,7 @@ def write_ru_years(num):
 
     return str(num) + ' ' + string
 
-bottles_excel = pandas.read_excel('wine3.xlsx', keep_default_na=False).to_dict(orient='records')
+bottles_excel = pandas.read_excel('wines.xlsx', keep_default_na=False).to_dict(orient='records')
 bottles_collection = collections.defaultdict(list)
 for bottle in bottles_excel:
     bottles_collection[bottle.get('Категория')].append(bottle)
