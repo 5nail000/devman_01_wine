@@ -16,7 +16,7 @@ env = Environment(
 
 template = env.get_template('template.html')
 
-# 
+
 
 def write_ru_years(num):
     
