@@ -7,6 +7,7 @@ import argparse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+
 def main():
 
     pp = pprint.PrettyPrinter(indent=4)
