@@ -5,6 +5,9 @@
 ## Запуск
 
 - Скачайте код
+```
+https://codeload.github.com/5nail000/devman_01_wine/zip/refs/heads/master
+```
 - Установите необходимые библиотеки:
 ```
 python3 -m pip install -r requirements.txt
