@@ -27,7 +27,7 @@ def main():
     logging.basicConfig(filename='logging.log', level=logging.DEBUG)
 
     parser = argparse.ArgumentParser(
-        description='Описание что делает программа'
+        description='Запуск Сайта-магазина'
     )
     parser.add_argument('-d', '--dir', default='.', help='Папка с таблицой wine.xlsx (по умолчанию корневая)')
     args = parser.parse_args()
@@ -38,13 +38,13 @@ def main():
     )
     template = env.get_template('template.html')
 
-    bottles_excel = pandas.read_excel(f'{Path().cwd().joinpath(args.dir)}/wines.xlsx', keep_default_na=False).to_dict(orient='records')
+    bottles_excel = pandas.read_excel(f'{Path().cwd().joinpath(args.dir).joinpath("wines.xlsx")}', keep_default_na=False).to_dict(orient='records')
     bottles_collection = collections.defaultdict(list)
     for bottle in bottles_excel:
         bottles_collection[bottle.get('Категория')].append(bottle)
 
     rendered_page = template.render(
-        bottles_data = bottles_collection,
+        bottles_dict = bottles_collection,
         years_str = write_ru_years(datetime.date.today().year - year_of_opening)
     )
 
