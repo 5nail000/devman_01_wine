@@ -2,6 +2,7 @@ import collections
 import datetime
 import pandas
 import pprint
+import argparse
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -10,13 +11,18 @@ def main():
 
     pp = pprint.PrettyPrinter(indent=4)
 
+    parser = argparse.ArgumentParser(
+        description='Описание что делает программа'
+    )
+    parser.add_argument('-d', '--dir', help='Папка с таблицой wine.xlsx (по умолчанию корневая)', type=str)
+    args = parser.parse_args()
+
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
     )
 
     template = env.get_template('template.html')
-
 
 
     def write_ru_years(num):
@@ -31,7 +37,10 @@ def main():
 
         return str(num) + ' ' + string
 
-    bottles_excel = pandas.read_excel('wines.xlsx', keep_default_na=False).to_dict(orient='records')
+    if args.dir: wine_folder = args.dir
+    else : wine_folder = '.'
+
+    bottles_excel = pandas.read_excel(f'{wine_folder}/wines.xlsx', keep_default_na=False).to_dict(orient='records')
     bottles_collection = collections.defaultdict(list)
     for bottle in bottles_excel:
         bottles_collection[bottle.get('Категория')].append(bottle)
