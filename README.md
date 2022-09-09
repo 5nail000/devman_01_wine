@@ -4,7 +4,7 @@
 
 ## Запуск
 
-- Скачайте код ([ссылка для скачивания](https://codeload.github.com/5nail000/devman_01_wine/zip/refs/heads/master))
+- Скачайте архив с кодом ([ссылка для скачивания](https://codeload.github.com/5nail000/devman_01_wine/zip/refs/heads/master)) и распакуйте его.
 - Для удобства реккомендуется установить виртуальное окружение ([ссылка на руководство](https://fixmypc.ru/post/sozdanie-virtualnogo-okruzheniia-v-python-3-s-venv-i-virtualenv/?ysclid=l7udz3aqdd57938214#efd7))
 - Установите необходимые библиотеки
 ```
