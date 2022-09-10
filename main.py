@@ -44,7 +44,7 @@ def main():
         bottles_collection[bottle.get('Категория')].append(bottle)
 
     rendered_page = template.render(
-        bottles_dict = bottles_collection,
+        bottles_collection = bottles_collection,
         years_str = write_ru_years(datetime.date.today().year - year_of_opening)
     )
 
